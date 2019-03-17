@@ -12,9 +12,9 @@ export default gql`
   }
 
   type Task {
-    id: Int
-    title: String
-    status: TaskStatus
+    id: Int!
+    title: String!
+    status: TaskStatus!
   }
 
   input CreateTaskInput {
@@ -29,7 +29,7 @@ export default gql`
 
   type Query {
     hello: String
-    tasks(status: TaskStatus): [Task]
+    tasks(status: TaskStatus): [Task!]!
     task(id: Int!): Task
   }
 
