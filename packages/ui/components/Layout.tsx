@@ -24,6 +24,9 @@ export const Layout: FunctionComponent = ({ children }) => {
           a {
             text-decoration: none;
           }
+          ul {
+            padding: 0;
+          }
         `}
       </style>
       <style jsx>
