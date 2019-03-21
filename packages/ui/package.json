@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "download-schema": "apollo service:download --endpoint=http://localhost:3001/graphql ./resources/schema.json",
+    "generate-types": "apollo client:codegen --localSchemaFile=./resources/schema.json --target=typescript --includes=./graphql/**/*.graphql --addTypename --outputFlat ./resources/gql-types.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-boost": "^0.3.1",
     "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.0.0",
     "react": "^16.8.1",
@@ -23,6 +26,7 @@
     "@types/react": "^16.8.2",
     "@types/styled-jsx": "^2.2.8",
     "@zeit/next-typescript": "^1.1.1",
+    "apollo": "^2.6.2",
     "typescript": "^3.3.3"
   }
 }

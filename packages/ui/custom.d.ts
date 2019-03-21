@@ -6,3 +6,5 @@ declare namespace NodeJS {
     fetch: typeof fetch;
   }
 }
+
+declare module '*.graphql';
