@@ -7,6 +7,7 @@ import {
 } from '../resources/gql-types';
 import { Loader } from '../components/Loader';
 import { Task } from '../components/Task';
+import { CreateTaskForm } from '../components/CreateTaskForm';
 
 class TasksQuery extends Query<ITasksQuery, TasksQueryVariables> {}
 
@@ -22,10 +23,11 @@ export default () => (
 
         return (
           <div>
+            <CreateTaskForm />
             {loading ? (
               <Loader />
             ) : (
-              <ul>
+              <ul className="tasks">
                 {tasks.map((task, i) => {
                   return <Task key={i} {...task} />;
                 })}
@@ -35,5 +37,11 @@ export default () => (
         );
       }}
     </TasksQuery>
+    <style jsx>{`
+      .tasks {
+        list-style: none;
+        margin: 0 0 20px;
+      }
+    `}</style>
   </Layout>
 );
