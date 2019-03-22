@@ -7,14 +7,17 @@ import {
 } from '../resources/gql-types';
 import { Loader } from '../components/Loader';
 import { Task } from '../components/Task';
-import { CreateTaskForm } from '../components/CreateTaskForm';
+import {
+  CreateTaskForm,
+  WrappedCreateTaskForm
+} from '../components/CreateTaskForm';
 
 class TasksQuery extends Query<ITasksQuery, TasksQueryVariables> {}
 
 export default () => (
   <Layout>
     <TasksQuery query={TASKS_QUERY}>
-      {({ error, loading, data }) => {
+      {({ error, loading, data, refetch }) => {
         if (error) {
           return <p>Something wrong happened</p>;
         }
@@ -23,7 +26,7 @@ export default () => (
 
         return (
           <div>
-            <CreateTaskForm />
+            <WrappedCreateTaskForm onCreateTask={refetch} />
             {loading ? (
               <Loader />
             ) : (

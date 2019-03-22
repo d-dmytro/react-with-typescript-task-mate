@@ -1,20 +1,65 @@
 import React from 'react';
 import { colors } from '../styles/constants';
+import {
+  CreateTaskInput,
+  CreateTaskMutation,
+  CreateTaskMutationVariables
+} from '../resources/gql-types';
+import { graphql, ChildMutateProps } from 'react-apollo';
+import CREATE_TASK_MUTATION from '../graphql/create-task.graphql';
 
-export class CreateTaskForm extends React.Component {
+interface Props {
+  onCreateTask: () => void;
+}
+
+type AllProps = ChildMutateProps<
+  Props,
+  CreateTaskMutation,
+  CreateTaskMutationVariables
+>;
+
+interface State {
+  input: CreateTaskInput;
+}
+
+export class CreateTaskForm extends React.Component<AllProps, State> {
   state = {
     input: {
       title: ''
     }
   };
 
-  onChange = () => {};
+  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    this.setState({
+      input: {
+        title: value
+      }
+    });
+  };
+
+  onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { mutate, onCreateTask } = this.props;
+    const { input } = this.state;
+    const result = await mutate({
+      variables: { input },
+      update: () => {
+        onCreateTask();
+      }
+    });
+    if (result && result.data && result.data.createTask) {
+      this.setState({
+        input: { title: '' }
+      });
+    }
+  };
 
   render() {
     const { input } = this.state;
 
     return (
-      <form>
+      <form onSubmit={this.onSubmit}>
         <input
           type="text"
           name="title"
@@ -46,3 +91,10 @@ export class CreateTaskForm extends React.Component {
     );
   }
 }
+
+export const WrappedCreateTaskForm = graphql<
+  Props,
+  CreateTaskMutation,
+  CreateTaskMutationVariables,
+  AllProps
+>(CREATE_TASK_MUTATION)(CreateTaskForm);
