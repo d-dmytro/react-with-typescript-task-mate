@@ -1,9 +1,11 @@
 import { colors } from '../styles/constants';
 import { FunctionComponent } from 'react';
+import { Header } from './Header';
 
 export const Layout: FunctionComponent = ({ children }) => {
   return (
     <div className="pageContainer">
+      <Header />
       {children}
       <style jsx global>
         {`
