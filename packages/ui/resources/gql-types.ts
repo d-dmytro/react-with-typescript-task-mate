@@ -26,6 +26,29 @@ export interface CreateTaskMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: TaskQuery
+// ====================================================
+
+export interface TaskQuery_task {
+  __typename: "Task";
+  id: number;
+  title: string;
+  status: TaskStatus;
+}
+
+export interface TaskQuery {
+  task: TaskQuery_task | null;
+}
+
+export interface TaskQueryVariables {
+  id: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: TasksQuery
 // ====================================================
 
@@ -48,6 +71,29 @@ export interface TasksQueryVariables {
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: UpdateTaskMutation
+// ====================================================
+
+export interface UpdateTaskMutation_updateTask {
+  __typename: "Task";
+  id: number;
+  title: string;
+  status: TaskStatus;
+}
+
+export interface UpdateTaskMutation {
+  updateTask: UpdateTaskMutation_updateTask | null;
+}
+
+export interface UpdateTaskMutationVariables {
+  input: UpdateTaskInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
@@ -59,6 +105,12 @@ export enum TaskStatus {
 
 export interface CreateTaskInput {
   title?: string | null;
+}
+
+export interface UpdateTaskInput {
+  id?: number | null;
+  title?: string | null;
+  status?: TaskStatus | null;
 }
 
 //==============================================================
