@@ -18,11 +18,11 @@ export default gql`
   }
 
   input CreateTaskInput {
-    title: String
+    title: String!
   }
 
   input UpdateTaskInput {
-    id: Int
+    id: Int!
     title: String
     status: TaskStatus
   }
