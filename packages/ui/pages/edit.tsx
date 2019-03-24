@@ -1,7 +1,7 @@
 import { NextStatelessComponent } from 'next';
 import Error from 'next/error';
 import { Layout } from '../components/Layout';
-import { UpdateTaskForm } from '../components/UpdateTaskForm';
+import { WrappedUpdateTaskForm } from '../components/UpdateTaskForm';
 import { Query } from 'react-apollo';
 import { TaskQuery, TaskQueryVariables } from '../resources/gql-types';
 import TASK_QUERY from '../graphql/task.graphql';
@@ -30,7 +30,9 @@ const Edit: NextStatelessComponent<Props, InitialProps> = ({ id }) => {
           return loading ? (
             <Loader />
           ) : (
-            <UpdateTaskForm initialInput={{ ...task }} />
+            <WrappedUpdateTaskForm
+              initialInput={task ? { id: task.id, title: task.title } : {}}
+            />
           );
         }}
       </ApolloTaskQuery>
