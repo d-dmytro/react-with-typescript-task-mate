@@ -15,6 +15,7 @@ export const Task = React.memo<Props>(({ id, title }) => {
           <a>{title}</a>
         </Link>
       </div>
+      <button>&times;</button>
       <style jsx>{`
         li {
           align-items: center;
@@ -37,6 +38,27 @@ export const Task = React.memo<Props>(({ id, title }) => {
         }
         .title a:hover {
           color: ${colors.primary};
+        }
+        button {
+          background: ${colors.shadow};
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          color: ${colors.primary};
+          flex-shrink: 0;
+          font-size: 11px;
+          font-weight: bold;
+          height: 20px;
+          line-height: 20px;
+          margin: 0 0 0 auto;
+          outline: 0;
+          padding: 0;
+          text-align: center;
+          width: 20px;
+        }
+        button:hover {
+          background: ${colors.primary};
+          color: white;
         }
       `}</style>
     </li>

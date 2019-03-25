@@ -7,10 +7,7 @@ import {
 } from '../resources/gql-types';
 import { Loader } from '../components/Loader';
 import { Task } from '../components/Task';
-import {
-  CreateTaskForm,
-  WrappedCreateTaskForm
-} from '../components/CreateTaskForm';
+import { WrappedCreateTaskForm } from '../components/CreateTaskForm';
 
 class TasksQuery extends Query<ITasksQuery, TasksQueryVariables> {}
 
