@@ -26,6 +26,29 @@ export interface CreateTaskMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: DeleteTaskMutation
+// ====================================================
+
+export interface DeleteTaskMutation_deleteTask {
+  __typename: "Task";
+  id: number;
+  title: string;
+  status: TaskStatus;
+}
+
+export interface DeleteTaskMutation {
+  deleteTask: DeleteTaskMutation_deleteTask | null;
+}
+
+export interface DeleteTaskMutationVariables {
+  id: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: TaskQuery
 // ====================================================
 

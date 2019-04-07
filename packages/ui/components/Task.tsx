@@ -5,9 +5,10 @@ import { colors } from '../styles/constants';
 export interface Props {
   id: number;
   title: string;
+  onDeleteTask: (id: number) => void;
 }
 
-export const Task = React.memo<Props>(({ id, title }) => {
+export const Task = React.memo<Props>(({ id, title, onDeleteTask }) => {
   return (
     <li>
       <div className="title">
@@ -15,7 +16,7 @@ export const Task = React.memo<Props>(({ id, title }) => {
           <a>{title}</a>
         </Link>
       </div>
-      <button>&times;</button>
+      <button onClick={() => onDeleteTask(id)}>&times;</button>
       <style jsx>{`
         li {
           align-items: center;
