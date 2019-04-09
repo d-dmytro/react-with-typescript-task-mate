@@ -1,0 +1,7 @@
+mutation ChangeStatusMutation($id: Int!, $status: TaskStatus!) {
+  changeStatus(id: $id, status: $status) {
+    id
+    title
+    status
+  }
+}

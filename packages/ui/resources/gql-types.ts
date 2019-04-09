@@ -3,6 +3,30 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: ChangeStatusMutation
+// ====================================================
+
+export interface ChangeStatusMutation_changeStatus {
+  __typename: "Task";
+  id: number;
+  title: string;
+  status: TaskStatus;
+}
+
+export interface ChangeStatusMutation {
+  changeStatus: ChangeStatusMutation_changeStatus | null;
+}
+
+export interface ChangeStatusMutationVariables {
+  id: number;
+  status: TaskStatus;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: CreateTaskMutation
 // ====================================================
 

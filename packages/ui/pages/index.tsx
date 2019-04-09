@@ -5,7 +5,10 @@ import {
   TasksQuery,
   TasksQueryVariables,
   DeleteTaskMutation,
-  DeleteTaskMutationVariables
+  DeleteTaskMutationVariables,
+  TaskStatus,
+  ChangeStatusMutation,
+  ChangeStatusMutationVariables
 } from '../resources/gql-types';
 import { Loader } from '../components/Loader';
 import { Task } from '../components/Task';
@@ -13,6 +16,7 @@ import { WrappedCreateTaskForm } from '../components/CreateTaskForm';
 import { ApolloClient } from 'apollo-boost';
 import DELETE_TASK_MUTATION from '../graphql/delete-task.graphql';
 import { useCallback } from 'react';
+import CHANGE_STATUS_MUTATION from '../graphql/change-status.graphql';
 
 class ApolloTasksQuery extends Query<TasksQuery, TasksQueryVariables> {}
 
@@ -37,9 +41,24 @@ const deleteTask = async (id: number, apollo: ApolloClient<any>) => {
   }
 };
 
+const changeTaskStatus = async (
+  id: number,
+  status: TaskStatus,
+  apollo: ApolloClient<any>
+) => {
+  await apollo.mutate<ChangeStatusMutation, ChangeStatusMutationVariables>({
+    mutation: CHANGE_STATUS_MUTATION,
+    variables: { id, status }
+  });
+};
+
 export default withApollo(({ client }) => {
   const deleteTaskCallback = useCallback(
     (id: number) => deleteTask(id, client),
+    []
+  );
+  const changeTaskStatusCallback = useCallback(
+    (id: number, status: TaskStatus) => changeTaskStatus(id, status, client),
     []
   );
   return (
@@ -64,6 +83,7 @@ export default withApollo(({ client }) => {
                       <Task
                         key={i}
                         onDeleteTask={deleteTaskCallback}
+                        onTaskStatusChange={changeTaskStatusCallback}
                         {...task}
                       />
                     );
