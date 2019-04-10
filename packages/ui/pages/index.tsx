@@ -17,6 +17,7 @@ import { ApolloClient } from 'apollo-boost';
 import DELETE_TASK_MUTATION from '../graphql/delete-task.graphql';
 import { useCallback } from 'react';
 import CHANGE_STATUS_MUTATION from '../graphql/change-status.graphql';
+import { TaskFilter } from '../components/TaskFilter';
 
 class ApolloTasksQuery extends Query<TasksQuery, TasksQueryVariables> {}
 
@@ -90,6 +91,7 @@ export default withApollo(({ client }) => {
                   })}
                 </ul>
               )}
+              <TaskFilter filter={{}} />
             </div>
           );
         }}
