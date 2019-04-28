@@ -27,7 +27,7 @@
     "@types/react": "^16.8.2",
     "@types/styled-jsx": "^2.2.8",
     "@zeit/next-typescript": "^1.1.1",
-    "apollo": "^2.6.2",
+    "apollo": "^2.9.0",
     "typescript": "^3.3.3"
   }
 }
