@@ -7,6 +7,7 @@ import {
 } from '../resources/gql-types';
 import { graphql, ChildMutateProps } from 'react-apollo';
 import CREATE_TASK_MUTATION from '../graphql/create-task.graphql';
+import { NonNullableProperties } from '../types';
 
 interface Props {
   onCreateTask: () => void;
@@ -19,15 +20,18 @@ type AllProps = ChildMutateProps<
 >;
 
 interface State {
-  input: CreateTaskInput;
+  input: NonNullableProperties<CreateTaskInput>;
 }
 
 export class CreateTaskForm extends React.Component<AllProps, State> {
-  state = {
-    input: {
-      title: ''
-    }
-  };
+  constructor(props: AllProps) {
+    super(props);
+    this.state = {
+      input: {
+        title: ''
+      }
+    };
+  }
 
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
