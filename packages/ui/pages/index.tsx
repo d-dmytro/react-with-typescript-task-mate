@@ -19,6 +19,7 @@ import { useCallback } from 'react';
 import CHANGE_STATUS_MUTATION from '../graphql/change-status.graphql';
 import { TaskFilter } from '../components/TaskFilter';
 import { NextFunctionComponent } from 'next';
+import { Notification, NotificationButtons } from '../components/Notification';
 
 class ApolloTasksQuery extends Query<TasksQuery, TasksQueryVariables> {}
 
@@ -86,13 +87,24 @@ const IndexPage: NextFunctionComponent<
     (id: number) => deleteTask(id, client),
     []
   );
+
   const changeTaskStatusCallback = useCallback(
     (id: number, status: TaskStatus) =>
       changeTaskStatus(id, status, taskFilter, client),
     [taskFilter]
   );
+
   return (
     <Layout>
+      <Notification>
+        <p>
+          Limited time offer! Get our <em>Pro</em> subscription plan for $10.
+        </p>
+        <NotificationButtons>
+          <a href="#">Learn More</a>
+          <a href="#">Dismiss</a>
+        </NotificationButtons>
+      </Notification>
       <ApolloTasksQuery
         query={TASKS_QUERY}
         variables={taskFilter}

@@ -21,6 +21,7 @@ export const Layout: FunctionComponent = ({ children }) => {
             color: ${colors.text};
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 18px;
+            line-height: 1.6;
             margin: 0;
           }
           a {
@@ -28,6 +29,12 @@ export const Layout: FunctionComponent = ({ children }) => {
           }
           ul {
             padding: 0;
+          }
+          p {
+            margin: 0 0 20px;
+          }
+          a {
+            color: ${colors.primary};
           }
         `}
       </style>
