@@ -15,7 +15,7 @@ import { Task } from '../components/Task';
 import { WrappedCreateTaskForm } from '../components/CreateTaskForm';
 import { ApolloClient } from 'apollo-boost';
 import DELETE_TASK_MUTATION from '../graphql/delete-task.graphql';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import CHANGE_STATUS_MUTATION from '../graphql/change-status.graphql';
 import { TaskFilter } from '../components/TaskFilter';
 import { NextFunctionComponent } from 'next';
@@ -81,6 +81,14 @@ interface InitialProps {
 
 interface Props extends InitialProps {}
 
+interface State {
+  showNotification: boolean;
+}
+
+const initialState: State = {
+  showNotification: true
+};
+
 const IndexPage: NextFunctionComponent<
   WithApolloClient<Props>,
   InitialProps
@@ -96,16 +104,26 @@ const IndexPage: NextFunctionComponent<
     [taskFilter]
   );
 
+  const [state, setState] = useState(initialState);
+  const handleDismissClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setState({
+      showNotification: false
+    });
+  };
+
   return (
     <Layout>
-      {false && (
+      {state.showNotification && (
         <Notification>
           <p>
             Limited time offer! Get our <em>Pro</em> subscription plan for $10.
           </p>
           <NotificationButtons>
             <a href="#">Learn More</a>
-            <a href="#">Dismiss</a>
+            <a href="#" onClick={handleDismissClick}>
+              Dismiss
+            </a>
           </NotificationButtons>
         </Notification>
       )}
