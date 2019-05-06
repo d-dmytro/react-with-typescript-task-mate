@@ -63,9 +63,11 @@ const changeTaskStatus = async (
           query: TASKS_QUERY,
           variables: { status: taskFilter.status },
           data: {
-            tasks: tasksCache.tasks.filter(
-              task => task.status === taskFilter.status
-            )
+            tasks: taskFilter.status
+              ? tasksCache.tasks.filter(
+                  task => task.status === taskFilter.status
+                )
+              : tasksCache.tasks
           }
         });
       }
@@ -96,15 +98,17 @@ const IndexPage: NextFunctionComponent<
 
   return (
     <Layout>
-      <Notification>
-        <p>
-          Limited time offer! Get our <em>Pro</em> subscription plan for $10.
-        </p>
-        <NotificationButtons>
-          <a href="#">Learn More</a>
-          <a href="#">Dismiss</a>
-        </NotificationButtons>
-      </Notification>
+      {false && (
+        <Notification>
+          <p>
+            Limited time offer! Get our <em>Pro</em> subscription plan for $10.
+          </p>
+          <NotificationButtons>
+            <a href="#">Learn More</a>
+            <a href="#">Dismiss</a>
+          </NotificationButtons>
+        </Notification>
+      )}
       <ApolloTasksQuery
         query={TASKS_QUERY}
         variables={taskFilter}
